@@ -1,0 +1,36 @@
+/** CSS：Area */
+.username-button{
+    text-decoration:underline;
+}
+
+body { padding-top: 70px; }
+
+.navbar-brand{
+    font-size:2em;
+}
+
+.allplaycount{
+    height:130px;
+    padding:5px;
+    background-color:#cfc;
+    border: outset;
+}
+.main h2{
+    text-align:right;
+}
+
+.recently{
+    background-color:#ccf;
+    border: outset;
+    padding:5px;
+    height:100%;
+}   
+
+.row-eq-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.playdatasrow{
+    margin-top:4%;
+}
