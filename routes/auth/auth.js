@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-
+const Sequelize = require('sequelize');
 
 module.exports = Auth = function(User) {}
 Auth.prototype.signin = function(User) {
@@ -55,7 +55,7 @@ Auth.prototype.signup = function(User) {
                 delete user.password;
                 res.send(user);
             })
-            .catch(function(e) {
+            .catch(Sequelize.ValidationError,function(e) {
                 res.statusCode = 500;
                 req.flash('error', "データベースエラー_(:3 」∠)_")
                 res.send(arguments);
