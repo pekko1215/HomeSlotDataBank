@@ -39,7 +39,7 @@ Auth.prototype.signup = function(User) {
                 where: {
                     username: username,
                 },
-                default: {
+                defaults: {
                     password: User.hashPassword(password)
                 }
             })
