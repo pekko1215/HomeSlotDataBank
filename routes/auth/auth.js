@@ -43,7 +43,7 @@ Auth.prototype.signup = function(User) {
                     password: User.hashPassword(password)
                 }
             })
-            .then((user, created) => {
+            .spread((user, created) => {
                 if (created) {
                     req.flash('error', "そのユーザ名は既に登録されています。");
                     res.render('main/login/', {
