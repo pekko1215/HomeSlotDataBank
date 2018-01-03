@@ -14,9 +14,13 @@ app.use(require('express-session')({
     saveUninitialized: false
 }))
 
-const sequelize = new Sequelize(getEnv("DATABASE_URL"))
+if (getEnv("DATABASE_URL")) {
+    var sequelize = new Sequelize(getEnv("DATABASE_URL"));
+} else {
+    var sequelize = new Sequelize(getEnv('DATABASE_LOCAL')[0],getEnv('DATABASE_LOCAL')[1],getEnv('DATABASE_LOCAL')[2],getEnv('DATABASE_LOCAL')[3]);
+}
 
-const User = require('./models/user')(sequelize,Sequelize)
+const User = require('./models/user')(sequelize, Sequelize)
 
 const auth = new Auth(User);
 app.use(passport.initialize());
@@ -52,9 +56,9 @@ app.post('/login', passport.authenticate('local', { successRedirect: '/user', fa
 })
 
 const route = {
-	main:require('./routes/main.js'),
-	login:require('./routes/login.js'),
-	signup:auth.signup
+    main: require('./routes/main.js'),
+    login: require('./routes/login.js'),
+    signup: auth.signup
 }
 
 // app.use("/", express.static(__dirname + '/public/main'));
@@ -64,11 +68,11 @@ const route = {
 //	})
 // })
 
-app.use("/",express.static(__dirname + '/public'));
+app.use("/", express.static(__dirname + '/public'));
 
-app.use('/',route.main);
-app.use('/login',route.login);
-app.use('/signup',route.signup(User));
+app.use('/', route.main);
+app.use('/login', route.login);
+app.use('/signup', route.signup(User));
 //postはbodyにデータが
 
 app.listen(app.get('port'), function() {
