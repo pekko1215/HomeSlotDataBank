@@ -34,17 +34,17 @@ app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 5000));
 passport.use(auth.signin(User))
 //認証した際のオブジェクトをシリアライズしてセッションに保存する。
-passport.serializeUser(function(username, done) {
+passport.serializeUser(function(user, done) {
     console.log('serializeUser');
-    done(null, username);
+    done(null, user);
 });
 
 
 //認証時にシリアライズしてセッションに保存したオブジェクトをデシリアライズする。
 //デシリアライズしたオブジェクトは各routerの req.user で参照できる。
-passport.deserializeUser(function(username, done) {
+passport.deserializeUser(function(user, done) {
     console.log('deserializeUser');
-    done(null, { name: username, msg: 'my message' });
+    done(null,user);
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

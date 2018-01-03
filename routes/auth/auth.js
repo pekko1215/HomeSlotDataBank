@@ -16,7 +16,10 @@ Auth.prototype.signin = function(User) {
                     req.flash("error", "ユーザ名、パスワードが異なります。")
                     return next(null);
                 } else {
-                    return next(null, username);
+                    return next(null, {
+                        username: username,
+                        user.nickname
+                    });
                 }
             })
         });
@@ -40,7 +43,8 @@ Auth.prototype.signup = function(User) {
                     username: username,
                 },
                 defaults: {
-                    password: User.hashPassword(password)
+                    password: User.hashPassword(password),
+                    nickname: username
                 }
             })
             .spread((user, created) => {
@@ -53,9 +57,9 @@ Auth.prototype.signup = function(User) {
                 }
                 user = user.values;
                 console.log(user)
-                res.send(username);
+                res.redirect('login');
             })
-            .catch(Sequelize.ValidationError,function(e) {
+            .catch(Sequelize.ValidationError, function(e) {
                 res.statusCode = 500;
                 req.flash('error', "データベースエラー_(:3 」∠)_")
                 res.send(arguments);

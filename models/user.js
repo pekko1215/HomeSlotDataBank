@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
             unique: true,
             validate: { isAlphanumeric: true }
         },
+        nickname:'char(64)',
         password: 'char(40)' //SHA-1ハッシュで保管
     })
     User.hashPassword = function(pass) {
