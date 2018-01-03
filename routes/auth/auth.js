@@ -56,7 +56,7 @@ Auth.prototype.signup = function(User) {
                     return
                 }
                 user = user.values;
-                res.redirect('login');
+                res.redirect('/login');
             })
             .catch(Sequelize.ValidationError, function(e) {
                 res.statusCode = 500;
