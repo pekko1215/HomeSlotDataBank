@@ -12,6 +12,7 @@ function isAuthenticated(req, res, next){
 
 module.exports = function(User) {
     router.get('/',isAuthenticated, function(req, res, next) {
+		console.log(req.user);
         res.render('user/dashbord');
     });
     return router;
