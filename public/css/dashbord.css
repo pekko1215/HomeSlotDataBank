@@ -24,7 +24,7 @@ body { padding-top: 70px; }
     border: outset;
     padding:5px;
     height:100%;
-}   
+}
 
 .row-eq-height {
     display: flex;

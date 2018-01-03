@@ -22,6 +22,8 @@ if (getEnv("DATABASE_URL")) {
 
 const User = require('./models/user')(sequelize, Sequelize)
 
+
+
 const auth = new Auth(User);
 app.use(passport.initialize());
 app.use(passport.session());
@@ -48,17 +50,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('cookie-parser')());
 
-app.use('/user', express.static(__dirname + '/user/dashboard'))
-
-
 app.post('/login', passport.authenticate('local', { successRedirect: '/user', failureRedirect: '/login', failureFlash: true }), function(req, res, next) {
 
 })
 
 const route = {
-    main: require('./routes/main.js'),
-    login: require('./routes/login.js'),
-    signup: auth.signup
+    main: require('./routes/main'),
+    login: require('./routes/login'),
+    signup: auth.signup(User),
+    dashbord:require('./routes/user/user')(User)
 }
 
 // app.use("/", express.static(__dirname + '/public/main'));
@@ -72,7 +72,8 @@ app.use("/", express.static(__dirname + '/public'));
 
 app.use('/', route.main);
 app.use('/login', route.login);
-app.use('/signup', route.signup(User));
+app.use('/signup', route.signup);
+app.use('/user',route.dashbord)
 //postはbodyにデータが
 
 app.listen(app.get('port'), function() {
