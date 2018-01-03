@@ -43,15 +43,22 @@ Auth.prototype.signup = function(User) {
                     password: User.hashPassword(password)
                 }
             })
-            .then((user,created) => {
+            .then((user, created) => {
+                if (created) {
+                    req.flash('error', "そのユーザ名は既に登録されています。");
+                    res.render('main/login/', {
+                        error: req.flash("error")
+                    });
+                    return
+                }
                 user = user.values;
                 delete user.password;
                 res.send(user);
             })
-            .catch((e) => {
+            .catch(function(e) {
                 res.statusCode = 500;
                 req.flash('error', "データベースエラー_(:3 」∠)_")
-                res.send(e);
+                res.send(arguments);
                 console.log(e)
             })
     }
