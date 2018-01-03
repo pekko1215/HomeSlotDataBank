@@ -27,7 +27,6 @@ Auth.prototype.signin = function(User) {
 }
 Auth.prototype.signup = function(User) {
     return function(req, res) {
-        console.log(User)
         var username = req.body.username;
         var password = req.body.password;
         if (!username || !password) {
@@ -56,8 +55,7 @@ Auth.prototype.signup = function(User) {
                     return
                 }
                 user = user.values;
-                console.log(user)
-                res.redirect('/login');
+                res.redirect(307,'/login');
             })
             .catch(Sequelize.ValidationError, function(e) {
                 res.statusCode = 500;
