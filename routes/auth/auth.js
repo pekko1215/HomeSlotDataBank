@@ -44,7 +44,7 @@ Auth.prototype.signup = function(User) {
                 }
             })
             .spread((user, created) => {
-                if (created) {
+                if (!created) {
                     req.flash('error', "そのユーザ名は既に登録されています。");
                     res.render('main/login/', {
                         error: req.flash("error")
