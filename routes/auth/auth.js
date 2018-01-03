@@ -10,7 +10,7 @@ Auth.prototype.signin = function(User) {
     }, function(req, username, password, next) {
         process.nextTick(() => {
             User.findOne({
-                username: username
+                where: {username: username}
             }).then((user) => {
                 if (user && User.hashPassword(password) != user.password) {
                     req.flash("error", "ユーザ名、パスワードが異なります。")
