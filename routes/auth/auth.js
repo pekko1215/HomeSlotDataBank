@@ -38,7 +38,7 @@ Auth.prototype.signup = function(User) {
             });
             return;
         }
-        return User.findOrCreate({
+        return User.findCreateFind({
                 where: {
                     username: username,
                 },
