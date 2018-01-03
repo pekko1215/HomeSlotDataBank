@@ -18,7 +18,7 @@ Auth.prototype.signin = function(User) {
                 } else {
                     return next(null, {
                         username: username,
-                        user.nickname
+                        nickname:user.nickname
                     });
                 }
             })
