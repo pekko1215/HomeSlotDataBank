@@ -10,7 +10,7 @@ Auth.prototype.signin = function(User) {
     }, function(req, username, password, next) {
         process.nextTick(() => {
             User.findOne({
-                where: {username: username}
+                where: { username: username }
             }).then((user) => {
                 if (user && User.hashPassword(password) != user.password) {
                     req.flash("error", "ユーザ名、パスワードが異なります。")
@@ -24,7 +24,7 @@ Auth.prototype.signin = function(User) {
 }
 Auth.prototype.signup = function(User) {
     return function(req, res) {
-		console.log(User)
+        console.log(User)
         var username = req.body.username;
         var password = req.body.password;
         if (!username || !password) {
@@ -35,11 +35,15 @@ Auth.prototype.signup = function(User) {
             });
             return;
         }
-        return User.create({
-                username: username,
-                password: User.hashPassword(password)
+        return User.findOrCreate({
+                where: {
+                    username: username,
+                },
+                default: {
+                    password: User.hashPassword(password)
+                }
             })
-            .then((user) => {
+            .then((user,created) => {
                 user = user.values;
                 delete user.password;
                 res.send(user);
@@ -47,9 +51,7 @@ Auth.prototype.signup = function(User) {
             .catch((e) => {
                 res.statusCode = 500;
                 req.flash('error', "データベースエラー_(:3 」∠)_")
-                res.render('main/login/', {
-                    error: req.flash("error")
-                });
+                res.send(e);
                 console.log(e)
             })
     }
