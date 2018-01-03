@@ -52,8 +52,8 @@ Auth.prototype.signup = function(User) {
                     return
                 }
                 user = user.values;
-                delete user.password;
-                res.send(user);
+                console.log(user)
+                res.send(username);
             })
             .catch(Sequelize.ValidationError,function(e) {
                 res.statusCode = 500;
