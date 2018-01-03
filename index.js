@@ -20,8 +20,8 @@ if (getEnv("DATABASE_URL")) {
     var sequelize = new Sequelize(getEnv('DATABASE_LOCAL')[0],getEnv('DATABASE_LOCAL')[1],getEnv('DATABASE_LOCAL')[2],getEnv('DATABASE_LOCAL')[3]);
 }
 
-const User = require('./models/user')(sequelize, Sequelize)
-
+const User = require('./models/user')(sequelize, Sequelize);
+const PlayData = require('./models/playdatas')(sequelize,Sequelize);
 
 
 const auth = new Auth(User);
@@ -60,13 +60,6 @@ const route = {
     signup: auth.signup(User),
     dashbord:require('./routes/user/user')(User)
 }
-
-// app.use("/", express.static(__dirname + '/public/main'));
-// app.get("/login",function(req,res){
-//	res.render(__dirname + '/public/login/index.ejs',{
-//		error:req.flash('error')
-//	})
-// })
 
 app.use("/", express.static(__dirname + '/public'));
 
