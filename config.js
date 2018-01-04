@@ -1,11 +1,11 @@
 module.exports = {
-    DATABASE_LOCAL: ['dmj9d6c39ing2', 'rooziwcbtjxoae', 'f806aa7ab2acc30cce7c6d6bdcb6bacba94b6d18be83614cdd9a6582a56bf0ea', {
+    DATABASE_LOCAL: ['dmj9d6c39ing2', 'llppidvhstfpvv', 'e53ca2981ac328b55ab8900e28be722d28f4297c945524580403212fb023d3e0', {
         host: 'ec2-54-83-3-101.compute-1.amazonaws.com',
         dialect: 'postgres',
         dialectOptions: {
             ssl: true
         }
     }],
-    SESSION_SECRET: "nyatyankawae"
+    SESSION_SECRET: "mongoroid"
 
 }
