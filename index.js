@@ -58,7 +58,7 @@ const route = {
     main: require('./routes/main'),
     login: require('./routes/login'),
     signup: auth.signup(User),
-    dashbord:require('./routes/user/user')(User)
+    dashbord:require('./routes/user/user')(User,PlayData)
 }
 
 app.use("/", express.static(__dirname + '/public'));

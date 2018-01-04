@@ -10,9 +10,10 @@ function isAuthenticated(req, res, next){
     }
 }
 
-module.exports = function(User) {
+module.exports = function(User,PlayData) {
     router.get('/',isAuthenticated, function(req, res, next) {
-        res.render('user/dashbord',req.user);
+        require('./dashbord')(User,PlayData,req.user,res);
     });
+
     return router;
 }

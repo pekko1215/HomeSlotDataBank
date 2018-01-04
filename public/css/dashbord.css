@@ -1,29 +1,33 @@
 /** CSS：Area */
-.username-button{
-    text-decoration:underline;
+
+.username-button {
+    text-decoration: underline;
 }
 
-body { padding-top: 70px; }
-
-.navbar-brand{
-    font-size:2em;
+body {
+    padding-top: 70px;
 }
 
-.allplaycount{
-    height:130px;
-    padding:5px;
-    background-color:#cfc;
+.navbar-brand {
+    font-size: 2em;
+}
+
+.allplaycount {
+    height: 130px;
+    padding: 5px;
+    background-color: #cfc;
     border: outset;
 }
-.main h2{
-    text-align:right;
+
+.main h2 {
+    text-align: right;
 }
 
-.recently{
-    background-color:#ccf;
+.recently {
+    background-color: #ccf;
     border: outset;
-    padding:5px;
-    height:100%;
+    padding: 5px;
+    height: 100%;
 }
 
 .row-eq-height {
@@ -31,6 +35,22 @@ body { padding-top: 70px; }
     flex-wrap: wrap;
 }
 
-.playdatasrow{
-    margin-top:4%;
+.playdatasrow {
+    margin-top: 4%;
+}
+
+.bluebutton-wrapper {
+    background: royalblue;
+    padding: 8px;
+    margin: -8px;
+    border-radius: 5px;
+    color: white;
+}
+
+.container{
+    margin-left:20px;
+}
+
+th{
+    font-size:3pt;
 }

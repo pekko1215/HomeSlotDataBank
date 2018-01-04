@@ -5,7 +5,9 @@ module.exports = function(sequelize, DataTypes) {
         playcount:DataTypes.INTEGER,
         incoin:DataTypes.INTEGER,
         outcoin:DataTypes.INTEGER,
-        count:DataTypes.STRING
+        count:DataTypes.STRING,
+        name:DataTypes.STRING,
+        comment:DataTypes.STRING
     })
     return User
 }
