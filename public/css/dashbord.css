@@ -47,10 +47,28 @@ body {
     color: white;
 }
 
-.container{
-    margin-left:20px;
+.container {
+    margin-left: 20px;
 }
 
-th{
-    font-size:3pt;
+th {
+    font-size: 3pt;
+}
+
+#uploadCover {
+    width: 50%;
+}
+
+.input-group-btn {
+    float: left;
+    padding-left: 2px;
+    padding-top: 1px;
+}
+
+.information-box {
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+    background: lightblue;
+    border-radius: 5px;
 }

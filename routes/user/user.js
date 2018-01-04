@@ -15,5 +15,13 @@ module.exports = function(User,PlayData) {
         require('./dashbord')(User,PlayData,req.user,res);
     });
 
+    router.get('/upload',isAuthenticated,function(req,res,next){
+        require('./upload').get(User,PlayData,req,res);
+    })
+
+    router.post('/upload',isAuthenticated,function(req,res,next){
+        require('./upload').post(User,PlayData,req,res);
+    })
+
     return router;
 }

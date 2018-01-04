@@ -13,5 +13,5 @@ module.exports = function(sequelize, DataTypes) {
         sha1.update(pass, 'utf8');
         return sha1.digest('hex');
     }
-    return User
+    return User;
 }

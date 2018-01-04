@@ -1,0 +1,42 @@
+<%- include('./head') %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 sidebar">
+                <%- include('./navsidebar') %>
+            </div>
+            <div class="col-md-10 main">
+                <h1 class="page-header">データのアップロード</h1>
+                <input id="lefile" type="file" style="display:none">
+                <div class="input-group">
+                    <input type="text" id="uploadCover" class="form-control" placeholder="select file...">
+                    <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input[id=lefile]').click();">Browse</button></span>
+                </div>
+                <p class="help-block">● .scccntで終わるファイルをアップロードできます。</p>
+                <script>
+                    $('input[id=lefile]').change(function() {
+                        $('#photoCover').val($(this).val());
+                    });
+                </script>
+                <div class="alert alert-danger" hidden>
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    データファイルを変換できませんでした。
+                </div>
+            </div>
+            <div class="col-md-10 fileinformation">
+                <div class="information-box" style="display: none">
+                    <h2 id="dataname">データ名</h2>
+                    <h3>総ゲーム数<div class="information-data" id="allplaycount"></div></h3>
+                    <h3>ゲーム数<div class="information-data" id="playcount"></div></h3>
+                    <h3>差枚数<div class="information-data" id="coin"></div></h3>
+                    <h3>IN枚数<div class="information-data" id="incoin"></div></h3>
+                    <h3>OUT枚数<div class="information-data" id="outcoin"></div></h3>
+                    <div class="information-datawrap">
+                    </div>
+                    <button type="button" id="sendbutton" class="btn btn-primary">データ送信</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="/js/sccparser.js"></script>
+<script src="/js/upload.js"></script>
+<%- include('./foot') %>
