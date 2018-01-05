@@ -1,11 +1,11 @@
 const express = require('express');
-const Sequelize = require('sequelize');
+
 const app = express();
 const passport = require('passport')
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const Auth = require('./routes/auth/auth');
-
+const Sequelize = require('sequelize')
 
 app.use(flash());
 app.use(require('express-session')({
@@ -22,7 +22,15 @@ if (getEnv("DATABASE_URL")) {
 
 const User = require('./models/user')(sequelize, Sequelize);
 const PlayData = require('./models/playdatas')(sequelize,Sequelize);
+const Slot = require('./models/slot')(sequelize,Sequelize);
 
+const models = {
+	User:User,
+	PlayData:PlayData,
+	Slot:Slot
+}
+
+// require('./systemslotregister')(Slot)
 
 const auth = new Auth(User);
 app.use(passport.initialize());
@@ -58,7 +66,7 @@ const route = {
     main: require('./routes/main'),
     login: require('./routes/login'),
     signup: auth.signup(User),
-    dashbord:require('./routes/user/user')(User,PlayData)
+    dashbord:require('./routes/user/user')(models)
 }
 
 app.use("/", express.static(__dirname + '/public'));

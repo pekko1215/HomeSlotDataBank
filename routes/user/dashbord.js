@@ -1,4 +1,5 @@
-module.exports = function(User,PlayData,user,res){
+module.exports = function(models,user,res){
+	var PlayData = models.PlayData;
 	PlayData.findAll({where:{
 		createdBy:user.username
 	}}).then((datas)=>{

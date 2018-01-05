@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define('playdatas', {
+    var PlayData = sequelize.define('playdatas', {
         createdBy:DataTypes.STRING,
         allplaycount:DataTypes.INTEGER,
         playcount:DataTypes.INTEGER,
@@ -7,7 +7,8 @@ module.exports = function(sequelize, DataTypes) {
         outcoin:DataTypes.INTEGER,
         count:DataTypes.STRING,
         name:DataTypes.STRING,
-        comment:DataTypes.STRING
+        comment:DataTypes.STRING,
+        slotname:DataTypes.STRING
     })
-    return User
+    return PlayData
 }

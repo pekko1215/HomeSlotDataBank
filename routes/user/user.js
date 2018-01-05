@@ -10,17 +10,21 @@ function isAuthenticated(req, res, next){
     }
 }
 
-module.exports = function(User,PlayData) {
+module.exports = function(models) {
     router.get('/',isAuthenticated, function(req, res, next) {
-        require('./dashbord')(User,PlayData,req.user,res);
+        require('./dashbord')(models,req.user,res);
     });
 
     router.get('/upload',isAuthenticated,function(req,res,next){
-        require('./upload').get(User,PlayData,req,res);
+        require('./upload').get(models,req,res);
     })
 
     router.post('/upload',isAuthenticated,function(req,res,next){
-        require('./upload').post(User,PlayData,req,res);
+        require('./upload').post(models,req,res);
+    })
+
+    router.get('/utils/search',isAuthenticated,function(req,res,next){
+		require('./utils/search').get(models,req,res)
     })
 
     return router;

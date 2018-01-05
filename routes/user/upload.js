@@ -1,5 +1,5 @@
 module.exports = {
-    get: function(User, PlayData, req, res) {
+    get: function(models, req, res) {
 		var user = req.user;
         res.render('user/dashbord/upload', {
             nickname: user.nickname,
@@ -8,7 +8,9 @@ module.exports = {
         });
         return user;
     },
-    post:function(User, PlayData, req, res){
+    post:function(models, req, res){
+		var User = models.User;
+		var PlayData = models.PlayData
 		var user = req.user;
 		var data = JSON.parse(req.body.data);
 		PlayData.create({
