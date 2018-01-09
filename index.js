@@ -32,7 +32,7 @@ const models = {
 
 // require('./systemslotregister')(Slot)
 
-const auth = new Auth(User);
+const auth = new Auth(models);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -40,7 +40,7 @@ app.set('view engine', 'ejs');
 
 
 app.set('port', (process.env.PORT || 5000));
-passport.use(auth.signin(User))
+passport.use(auth.signin(models))
 //認証した際のオブジェクトをシリアライズしてセッションに保存する。
 passport.serializeUser(function(user, done) {
     console.log('serializeUser');
@@ -65,7 +65,7 @@ app.post('/login', passport.authenticate('local', { successRedirect: '/user', fa
 const route = {
     main: require('./routes/main'),
     login: require('./routes/login'),
-    signup: auth.signup(User),
+    signup: auth.signup(models),
     dashbord:require('./routes/user/user')(models)
 }
 

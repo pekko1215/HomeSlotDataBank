@@ -29,6 +29,7 @@
                         <tr>
                             <th>日付</th>
                             <th>データ名</th>
+                            <th>台名</th>
                             <th>総ゲーム数</th>
                             <th>ゲーム数</th>
                             <th>C1</th>
@@ -42,8 +43,9 @@
                             <% var data = q.dataValues %>
                             <% var timestamp = data.updatedAt %>
                             <tr>
-                                <td><%= [timestamp.getFullYear(),timestamp.getMonth() + 1,timestamp.getDate()].join( '/' ) + ' '+ timestamp.toLocaleTimeString(); %></td>
+                                <td><%= [timestamp.getFullYear(),timestamp.getMonth() + 1,timestamp.getDate()].join( '/' );%></td>
                                 <td><%= data.name %></td>
+                                <td><%= data.slotname %></td>
                                 <td><%= data.allplaycount %></td>
                                 <td><%= data.playcount %></td>
                                 <% var arr = data.count.split(',')%>

@@ -21,7 +21,6 @@ $(function() {
                     timer = false;
                 }, 3000)
             } else {
-                console.log(data);
                 var arr = file.name.split('.');
                 arr.pop();
                 $('#dataname').text(arr.join('.'))
@@ -42,6 +41,7 @@ $(function() {
                 $('.information-box').show();
                 $('#sendbutton')[0].onclick = function(e) {
                     if (!confirm("データを送信します。よろしいですか？")) { return; }
+                    data.slotname = $('#slotselect').val();
                     $.post('/user/upload', {
                         data: JSON.stringify(data),
                         name: arr.join('.')
@@ -62,4 +62,16 @@ $(function() {
         }
         reader.readAsText(file)
     });
+    $('#search').on('click',e=>{
+        var query = $('#q').val();
+        $.get(`/user/utils/search?q=${query}`,data=>{
+            $('#slotselect > option').remove();
+            data.forEach(d=>{
+                $('#slotselect').append($('<option/>',{
+                    value:d.name,
+                    text:d.name
+                }))
+            })
+        })
+    })
 })

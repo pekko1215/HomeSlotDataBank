@@ -13,6 +13,7 @@ module.exports = {
 		var PlayData = models.PlayData
 		var user = req.user;
 		var data = JSON.parse(req.body.data);
+		console.log(data)
 		PlayData.create({
 			name:req.body.name,
 			createdBy:user.username,
@@ -22,6 +23,7 @@ module.exports = {
 			outcoin:data.Coins.TotalCoinOut,
 			count:data.BonusCounter.Counter.join(','),
 			comment:'',
+			slotname:data.slotname
 		}).then(()=>{
 			res.send(true);
 		}).catch(()=>{

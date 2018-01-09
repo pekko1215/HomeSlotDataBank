@@ -72,3 +72,21 @@ th {
     background: lightblue;
     border-radius: 5px;
 }
+
+#q{
+    width:30%;
+    float:left;
+}
+
+.browse-button{
+   margin-top: -1px;
+}
+
+.selectpicker{
+    width:80%;
+    padding:5px;
+}
+
+#dataname{
+    word-wrap: break-word;
+}

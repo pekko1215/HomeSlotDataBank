@@ -1,15 +1,12 @@
 <%- include('./head') %>
     <div class="container">
         <div class="row">
-            <div class="col-md-2 sidebar">
-                <%- include('./navsidebar') %>
-            </div>
             <div class="col-md-10 main">
                 <h1 class="page-header">データのアップロード</h1>
                 <input id="lefile" type="file" style="display:none">
                 <div class="input-group">
                     <input type="text" id="uploadCover" class="form-control" placeholder="select file...">
-                    <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input[id=lefile]').click();">Browse</button></span>
+                    <span class="input-group-btn"><button type="button" class="btn btn-info browse-button" onclick="$('input[id=lefile]').click();">Browse</button></span>
                 </div>
                 <p class="help-block">● .scccntで終わるファイルをアップロードできます。</p>
                 <script>
@@ -32,6 +29,14 @@
                     <h3>OUT枚数<div class="information-data" id="outcoin"></div></h3>
                     <div class="information-datawrap">
                     </div>
+                    <span>
+                        <input type="text" class="form-control" id="q">
+                        <button id="search" class="btn btn-primary">台検索</button>
+                    </span>
+                    <br>
+                    <select id="slotselect" class="selectpicker">
+                    </select>
+                    <br>
                     <button type="button" id="sendbutton" class="btn btn-primary">データ送信</button>
                 </div>
             </div>

@@ -1,8 +1,10 @@
 const LocalStrategy = require('passport-local').Strategy;
 const Sequelize = require('sequelize');
 
-module.exports = Auth = function(User) {}
-Auth.prototype.signin = function(User) {
+module.exports = Auth = function(models) {}
+Auth.prototype.signin = function(models) {
+    var {User} = models;
+    console.log(models);
     return new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password',
@@ -25,7 +27,8 @@ Auth.prototype.signin = function(User) {
         });
     })
 }
-Auth.prototype.signup = function(User) {
+Auth.prototype.signup = function(models) {
+    var {User} = models;
     return function(req, res) {
         var username = req.body.username;
         var password = req.body.password;
