@@ -74,4 +74,9 @@ $(function() {
             })
         })
     })
+    $('#q').on('keydown',(e)=>{
+        if(e.key=='Enter'){
+            $('#search').click();
+        }
+    })
 })

@@ -1,10 +1,10 @@
 const LocalStrategy = require('passport-local').Strategy;
 const Sequelize = require('sequelize');
+var router = require('express').Router();
 
 module.exports = Auth = function(models) {}
 Auth.prototype.signin = function(models) {
     var {User} = models;
-    console.log(models);
     return new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password',
@@ -29,13 +29,13 @@ Auth.prototype.signin = function(models) {
 }
 Auth.prototype.signup = function(models) {
     var {User} = models;
-    return function(req, res) {
+    router.post('/',function(req, res) {
         var username = req.body.username;
         var password = req.body.password;
         if (!username || !password) {
             //ユーザ名、またはパスワードが空欄
             req.flash('error', "正しく入力してください(。-`ω-)")
-            res.render('main/login/', {
+            res.render('main/signup/', {
                 error: req.flash("error")
             });
             return;
@@ -52,7 +52,7 @@ Auth.prototype.signup = function(models) {
             .spread((user, created) => {
                 if (!created) {
                     req.flash('error', "そのユーザ名は既に登録されています。");
-                    res.render('main/login/', {
+                    res.render('main/signup/', {
                         error: req.flash("error")
                     });
                     return
@@ -61,10 +61,21 @@ Auth.prototype.signup = function(models) {
                 res.redirect(307,'/login');
             })
             .catch(Sequelize.ValidationError, function(e) {
-                res.statusCode = 500;
+                switch(e.name){
+                    case 'SequelizeValidationError':
+                        req.flash('error',"ユーザ名が正しくありません");
+                        res.statusCode = 500;
+                        res.render('main/signup',{error:req.flash('error')});
+                        return
+                    break
+                }
                 req.flash('error', "データベースエラー_(:3 」∠)_")
+                res.statusCode = 500;
                 res.send(arguments);
-                console.log(e)
             })
-    }
+    });
+    router.get('/',function(req,res,next){
+        res.render('main/signup',{error:''})
+    })
+    return router
 }

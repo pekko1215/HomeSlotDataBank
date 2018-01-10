@@ -43,7 +43,6 @@ app.set('port', (process.env.PORT || 5000));
 passport.use(auth.signin(models))
 //認証した際のオブジェクトをシリアライズしてセッションに保存する。
 passport.serializeUser(function(user, done) {
-    console.log('serializeUser');
     done(null, user);
 });
 
@@ -51,7 +50,6 @@ passport.serializeUser(function(user, done) {
 //認証時にシリアライズしてセッションに保存したオブジェクトをデシリアライズする。
 //デシリアライズしたオブジェクトは各routerの req.user で参照できる。
 passport.deserializeUser(function(user, done) {
-    console.log('deserializeUser');
     done(null,user);
 });
 app.use(bodyParser.json());

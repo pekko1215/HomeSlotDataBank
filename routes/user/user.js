@@ -27,5 +27,9 @@ module.exports = function(models) {
 		require('./utils/search').get(models,req,res)
     })
 
+    router.get('/data',isAuthenticated,function(req,res,next){
+        require('./data').get(models,req,res);
+    })
+
     return router;
 }

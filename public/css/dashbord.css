@@ -28,6 +28,7 @@ body {
     border: outset;
     padding: 5px;
     height: 100%;
+    word-wrap: break-word;
 }
 
 .row-eq-height {

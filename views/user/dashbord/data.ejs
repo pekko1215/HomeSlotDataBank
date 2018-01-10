@@ -1,0 +1,43 @@
+<%- include('./head') %>
+<div class="container">
+	<div class="row">
+	
+	</div>
+	<div class="row playdatasrow">
+		<div class="col-sm-offset-2 col-sm-10 col-xs-12">
+			<table id="foo-table" class="table table-bordered">
+				<thead>
+					<tr>
+						<th>日付</th>
+						<th>データ名</th>
+						<th>台名</th>
+						<th>総ゲーム数</th>
+						<th>ゲーム数</th>
+						<th>C1</th>
+						<th>C2</th>
+						<th>C3</th>
+						<th>C4</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% playdatas.forEach((q)=>{ %>
+						<% var data = q.dataValues %>
+						<% var timestamp = data.updatedAt %>
+						<tr>
+							<td><%= [timestamp.getFullYear(),timestamp.getMonth() + 1,timestamp.getDate()].join( '/' );%></td>
+							<td><%= data.name %></td>
+							<td><%= data.slotname %></td>
+							<td><%= data.allplaycount %></td>
+							<td><%= data.playcount %></td>
+							<% var arr = data.count.split(',')%>
+							<% for(var i=0;i<4;i++){%>
+								<td><%= arr[i]||0%></td>
+							<% }%>
+						</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<%- include('./foot') %>
