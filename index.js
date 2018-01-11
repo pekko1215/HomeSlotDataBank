@@ -55,7 +55,7 @@ passport.deserializeUser(function(user, done) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('cookie-parser')());
-
+	
 app.post('/login', passport.authenticate('local', { successRedirect: '/user', failureRedirect: '/login', failureFlash: true }), function(req, res, next) {
 	console.log(req.body)
 })
@@ -72,7 +72,8 @@ app.use("/", express.static(__dirname + '/public'));
 app.use('/', route.main);
 app.use('/login', route.login);
 app.use('/signup', route.signup);
-app.use('/user',route.dashbord)
+app.use('/user',route.dashbord);
+
 //postはbodyにデータが
 
 app.listen(app.get('port'), function() {
