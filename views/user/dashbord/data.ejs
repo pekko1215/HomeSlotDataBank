@@ -1,10 +1,25 @@
+<script src="/js/mapgraph.js"></script>
+<script>
+	MapGraph({
+		colors:[0xaaaaaa,0x224422,0x226622,0x228822,0x22aa22,0x22cc22,0x22ee22],
+		selector:'#graphmap',
+		datas:<%- JSON.stringify(playdatas) %>.map(d=>{
+			return {
+				date:d.updatedAt,
+				value:d.allplaycount,
+				html:`<div>${d.name}</div>`
+			}
+		})
+	})
+</script>
 <%- include('./head') %>
 <div class="container">
 	<div class="row">
-	
-	</div>
-	<div class="row playdatasrow">
-		<div class="col-sm-offset-2 col-sm-10 col-xs-12">
+        <div class="col-md-2 sidebar">
+            <%- include('./navsidebar') %>
+        </div>
+		<div class="col-md-10 col-sm-10 data">
+			<div id="graphmap"></div>
 			<table id="foo-table" class="table table-bordered">
 				<thead>
 					<tr>
@@ -37,7 +52,6 @@
 					<% }) %>
 				</tbody>
 			</table>
-		</div>
 	</div>
 </div>
 <%- include('./foot') %>

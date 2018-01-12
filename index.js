@@ -55,7 +55,7 @@ passport.deserializeUser(function(user, done) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('cookie-parser')());
-	
+
 app.post('/login', passport.authenticate('local', { successRedirect: '/user', failureRedirect: '/login', failureFlash: true }), function(req, res, next) {
 	console.log(req.body)
 })

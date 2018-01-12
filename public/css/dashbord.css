@@ -91,3 +91,7 @@ th {
 #dataname{
     word-wrap: break-word;
 }
+
+.data{
+    top:76px;
+}
