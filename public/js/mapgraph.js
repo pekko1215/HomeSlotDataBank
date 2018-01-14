@@ -1,6 +1,5 @@
 MapGraph = function(_data) {
     const NS = "http://www.w3.org/2000/svg"
-    console.log(_data)
     _data = Object.assign(_data, {
         width: 676,
         height: 130,

@@ -1,36 +1,101 @@
+<%- include('./head') %>
 <script src="/js/mapgraph.js"></script>
 <script>
 	MapGraph({
-		selector:'#graphmap',
-		events:{
-			click:function(){
-				var year = (new Date).getFullYear();
-				var month = this.dataset.month;
-				var day = this.dataset.day;
-				var $el = $('#foo-table_filter > label > input');
-				datatable
-					.search(`^${year}/${month}/${day}\\s`,true,false,true)
-					.draw();
-			}
-		},
-		datas:<%- JSON.stringify(playdatas) %>.map(d=>{
-			return {
-				date:d.updatedAt,
-				value:d.allplaycount,
-				html:`<div>${d.name}</div>`
-			}
-		})
-	})
+    selector: '#graphmap',
+    events: {
+        click: function() {
+            var year = (new Date).getFullYear();
+            var month = this.dataset.month;
+            var day = this.dataset.day;
+            var $el = $('#foo-table_filter > label > input');
+            datatable
+                .search(`^${year}/${month}/${day}\\s`, true, false, true)
+                .draw();
+        }
+    },
+    datas: <%- JSON.stringify(playdatas) %>.map(d => {
+        return {
+            date: d.updatedAt,
+            value: d.allplaycount,
+            html: `<div>${d.name}</div>`
+        }
+    })
+})
 </script>
-<%- include('./head') %>
+<script src="/js/dataview.js"></script>
 <div class="container">
 	<div class="row">
         <div class="col-md-2 sidebar">
             <%- include('./navsidebar') %>
         </div>
 		<div class="col-md-10 col-sm-10 data">
-			<div id="graphmap"></div>
-			<%- include('./table') %>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="graphmap">
+					</div>
+				</div>
+				<div class="col-md-12">
+					<%- include('./table') %>
+				</div>
+				<div class="col-md-12">
+					<div style="padding:5px">
+						<h2>データの表示</h2>
+						<button class="btn btn-primary" id="sougoubutton">総合</button>
+						<button class="btn btn-success" id="hikakubutton">比較</button>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div id="fulldata" class="panel panel-default" style="display:none;">
+						<div class="panel-heading">総合データ</div>
+						<div class="panel-body">
+							<div class="row tile_count">
+								<div class="col-md-3 col-sm-6 col-xs-9 tile_stats_count">
+									<span class="count_top"> 総ゲーム数</span>
+									<div class="count" id="allplay">2500<div class="unit">G</div></div>
+							    </div>
+							    <div class="col-md-3 col-sm-6 col-xs-9 tile_stats_count">
+									<span class="count_top"> 差枚数</span>
+									<div class="count plus" id="coin">12345<div class="unit">枚</div></div>
+							    </div>
+							    <div class="col-md-3 col-sm-6 col-xs-9 tile_stats_count">
+									<span class="count_top"> 機械割</span>
+									<div class="count plus" id="percent">123.4<div class="unit">%</div></div>
+							    </div>
+							</div>
+							<div class="row tile_count">
+							    <div class="col-md-3 col-sm-6 col-xs-9 tile_stats_count">
+									<span class="count_top"> IN枚数</span>
+									<div class="count" id="incoin">1234<div class="unit">枚</div></div>
+							    </div>
+							    <div class="col-md-3 col-sm-6 col-xs-9 tile_stats_count">
+									<span class="count_top"> OUT枚数</span>
+									<div class="count" id="outcoin">1234<div class="unit">枚</div></div>
+							    </div>
+							</div>
+							<div class="row tile_count">
+							    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+									<span class="count_top"> カウント1</span>
+									<div class="count" id="count1">1<div class="unit">回</div></div>
+							    </div>
+							    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+									<span class="count_top"> カウント2</span>
+									<div class="count" id="count2">2<div class="unit">回</div></div>
+							    </div>
+							    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+									<span class="count_top"> カウント3</span>
+									<div class="count" id="count3">3<div class="unit">回</div></div>
+							    </div>
+							    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+									<span class="count_top"> カウント4</span>
+									<div class="count" id="count4">4<div class="unit">回</div></div>
+							    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <%- include('./foot') %>

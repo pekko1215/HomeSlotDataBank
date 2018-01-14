@@ -97,7 +97,8 @@ th {
 }
 
 #graphmap{
-    width: 676;
+    width: fit-content;
+    margin-bottom: 14px;
 }
 
 td{
@@ -112,4 +113,54 @@ table{
 
 .datatablewrap{
     padding-top: 10px;
+}
+
+.tile_stats_count{
+    border-bottom: 1px solid #D9DEE4;
+    padding: 0 10px 0 20px;
+    position: relative;
+}
+.tile_count{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.count_top{
+    font-size:13px;
+}
+
+.count{
+    font-size: 40px;
+    font-weight: 600;
+    color:gray;
+}
+
+.tile_stats_count:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 65px;
+    border-left: 2px solid #ADB2B5;
+    margin-top: 10px;
+}
+
+.plus{
+    color:darkblue;
+}
+.plus:before{
+    content: "+";
+}
+.minus{
+    color:red;
+}
+
+.minus:before{
+    content: "-";
+}
+
+.unit{
+    font-size: 20px;
+    float: right;
+    position: relative;
+    top: 21px;
 }

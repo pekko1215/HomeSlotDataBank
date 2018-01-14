@@ -37,11 +37,29 @@
                 render: function(data, type, row) {
                     return data.substr(0, 10);
                 }
+            }],
+            fnCreatedRow: function(nRow, aData, iDataIndex) {
+                aData[9] = "false"
+                var $checkbox = $('<input>')
+                    .attr('type', 'checkbox')
+                    .change(function(event) {
+                        // 内部データをチェックされた値に書き換えます。
+                        aData[9] = $(this).is(":checked").toString();
+                    })
+                    .click(function(event){
+                        event.stopPropagation();
+                    });
+                $("td:eq(9)", nRow).append($checkbox);
+                $("td:eq(9)", nRow).click(function(ev) {
+                    $checkbox.trigger('click')
+                })
+            },
+            "columnDefs": [{
+                "targets": [10,11], //Comma separated values
+                "visible": false,
+                "searchable": false
             }]
         });
-        $("#foo-table").change(function() {
-            console.log(this)
-        })
     });
     </script>
 </head>
