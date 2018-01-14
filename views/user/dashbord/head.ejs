@@ -27,10 +27,25 @@
             }
         });
 
-        $("#foo-table").DataTable();
+        window.datatable = $("#foo-table").DataTable({
+            order: [
+                [0, 'desc']
+            ],
+            "oSearch": { "bSmart": false },
+            columnDefs: [{
+                targets: 1,
+                render: function(data, type, row) {
+                    return data.substr(0, 10);
+                }
+            }]
+        });
+        $("#foo-table").change(function() {
+            console.log(this)
+        })
     });
     </script>
 </head>
+
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -41,15 +56,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/user"><%= nickname%>のDashboard</a>
+                <a class="navbar-brand" href="/user">
+                    <%= nickname%>のDashboard</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/user/upload" class="upload-button"><div class="bluebutton-wrapper">アップロード</div></a></li>
+                    <li>
+                        <a href="/user/upload" class="upload-button">
+                            <div class="bluebutton-wrapper">アップロード</div>
+                        </a>
+                    </li>
                     <li><a href="/user" class="dashboard-button">ダッシュボード</a></li>
                     <li><a href="#" class="setting-button">設定</a></li>
                     <li><a href="#" class="help-button">ヘルプ</a></li>
-                    <li><a href="#" class="username-button"><%= nickname%></a></li>
+                    <li>
+                        <a href="#" class="username-button">
+                            <%= nickname%>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

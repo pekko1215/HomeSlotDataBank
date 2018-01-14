@@ -95,3 +95,21 @@ th {
 .data{
     top:76px;
 }
+
+#graphmap{
+    width: 676;
+}
+
+td{
+/*    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;*/
+}
+
+table{
+    /*table-layout: fixed*/
+}
+
+.datatablewrap{
+    padding-top: 10px;
+}
