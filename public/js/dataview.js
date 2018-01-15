@@ -1,4 +1,5 @@
 $(() => {
+	var clipboard = new Clipboard('#copybtn');
     $('#sougoubutton').click(ev=>{
 		var targets = datatable.data().filter(d=>d[9] == "true");
 		if(targets.length==0){return}
@@ -35,4 +36,15 @@ $(() => {
 		}
     });
     $('#hikakubutton');
+    $('#kokaibutton').click(()=>{
+		var targets = datatable.data().filter(d=>d[9] == "true");
+		$.get('/user/utils/releaser?list='+targets.map(d=>d[12]).join(','),(body)=>{
+			if(body.error){
+				return
+			}
+			$('#copyer').val(body.url);
+			$('#clipwrap').show();
+		})
+		$('#clipwrap').hide();
+    })
 })

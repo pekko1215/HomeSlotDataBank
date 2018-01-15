@@ -64,7 +64,8 @@ const route = {
     main: require('./routes/main'),
     login: require('./routes/login'),
     signup: auth.signup(models),
-    dashbord:require('./routes/user/user')(models)
+    dashbord:require('./routes/user/user')(models),
+    release:require('./routes/release/release')(models,getEnv('SESSION_SECRET'))
 }
 
 app.use("/", express.static(__dirname + '/public'));
@@ -73,6 +74,7 @@ app.use('/', route.main);
 app.use('/login', route.login);
 app.use('/signup', route.signup);
 app.use('/user',route.dashbord);
+app.use('/release',route.release);
 
 //postはbodyにデータが
 

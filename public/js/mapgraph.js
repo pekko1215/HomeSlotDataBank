@@ -1,4 +1,4 @@
-MapGraph = function(_data) {
+MapGraph = (function(_data) {
     const NS = "http://www.w3.org/2000/svg"
     _data = Object.assign(_data, {
         width: 676,
@@ -124,8 +124,8 @@ MapGraph = function(_data) {
                 }
                 $dispelm = document.createElement('div')
                 $dispelm.style.position = 'absolute';
-                $dispelm.style.left = e.clientX + document.body.scrollLeft;
-                $dispelm.style.top = e.clientY + document.body.scrollTop + 10;
+                $dispelm.style.left = (e.clientX + document.body.scrollLeft + 10) + 'px';
+                $dispelm.style.top = (e.clientY + document.body.scrollTop + 10) + 'px';
                 $dispelm.style.background = '#ccc'
                 if (this.dataset.idxarr) {
                     $dispelm.innerHTML = `${(new Date).getFullYear()}/${this.dataset.month}/${this.dataset.day}<br>`
@@ -144,4 +144,4 @@ MapGraph = function(_data) {
             }
         })
     })
-}
+})

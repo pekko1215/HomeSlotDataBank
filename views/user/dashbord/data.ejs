@@ -26,12 +26,14 @@
 <script src="/js/dataview.js"></script>
 <div class="container">
 	<div class="row">
+		<% if(nickname!="ゲスト"){%>
         <div class="col-md-2 sidebar">
             <%- include('./navsidebar') %>
         </div>
+        <% }%>
 		<div class="col-md-10 col-sm-10 data">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12" style="overflow-x: auto;">
 					<div id="graphmap">
 					</div>
 				</div>
@@ -43,6 +45,17 @@
 						<h2>データの表示</h2>
 						<button class="btn btn-primary" id="sougoubutton">総合</button>
 						<button class="btn btn-success" id="hikakubutton">比較</button>
+						<% if(nickname!="ゲスト") { %>
+							<button class="btn btn btn-info" id="kokaibutton">公開</button>
+						<% }%>
+						<div id="clipwrap" style="display: none">
+							<div class="input-group" style="display: inline-flex;">
+								<input class="form-control" id="copyer">
+								<span class="input-group-btn">
+									<button class="btn btn-secondary" data-clipboard-target="#copyer" id="copybtn"><span class="glyphicon glyphicon-copy"></span></button>
+								</span>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-12">

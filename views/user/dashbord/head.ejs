@@ -17,6 +17,7 @@
     <![endif]-->
     <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
     <link rel="stylesheet" href="/css/dashbord.css" />
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <script>
     jQuery(function($) {
@@ -32,12 +33,6 @@
                 [0, 'desc']
             ],
             "oSearch": { "bSmart": false },
-            columnDefs: [{
-                targets: 1,
-                render: function(data, type, row) {
-                    return data.substr(0, 10);
-                }
-            }],
             fnCreatedRow: function(nRow, aData, iDataIndex) {
                 aData[9] = "false"
                 var $checkbox = $('<input>')
@@ -55,9 +50,14 @@
                 })
             },
             "columnDefs": [{
-                "targets": [10,11], //Comma separated values
+                "targets": [10,11,12], //Comma separated values
                 "visible": false,
                 "searchable": false
+            },{
+                targets: [1,2],
+                render: function(data, type, row) {
+                    return data.length>10?data.substr(0, 10)+'...':data;
+                }
             }]
         });
     });
@@ -74,10 +74,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/user">
-                    <%= nickname%>のDashboard</a>
+                <% if(nickname!="ゲスト"){%>
+                    <a class="navbar-brand" href="/user">
+                        <%= nickname%>のDashboard</a>
+                <% }else{%>
+                    <a class="navbar-brand">
+                        データ閲覧</a>
+                <% }%>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
+                <% if(nickname!="ゲスト"){ %>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/user/upload" class="upload-button">
@@ -93,6 +99,7 @@
                         </a>
                     </li>
                 </ul>
+                <% }%>
             </div>
         </div>
     </nav>
